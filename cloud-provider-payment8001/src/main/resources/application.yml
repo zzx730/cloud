@@ -1,0 +1,17 @@
+server:
+  port: 8001
+eureka:
+  instance:
+    # 注册名
+    instance-id: cloud-provider-payment8001
+  client:
+    service-url:
+      # Eureka server的地址
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+spring:
+  application:
+    #设置应用名
+    name: cloud-payment-provider

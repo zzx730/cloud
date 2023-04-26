@@ -1,0 +1,7 @@
+# Project exclude paths
+/cloud-consumer-openfeign-order80/target/
+/cloud-consumer-order80/target/
+/cloud-consumer-resilience4j-order80/target/
+/cloud-eureka-server7001/target/
+/cloud-eureka-server7002/target/
+/cloud-provider-payment8001/target/
