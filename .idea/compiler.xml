@@ -11,11 +11,11 @@
         <module name="cloud-provider-payment8002" />
         <module name="cloud-config-client3355" />
         <module name="cloud-config-client3366" />
-        <module name="cloud-eureka-server7001" />
         <module name="cloud-stream-rabbitmq-provider8001" />
-        <module name="cloud-provider-payment8001" />
-        <module name="cloud-consumer-resilience4j-order80" />
+        <module name="cloud-eureka-server7001" />
         <module name="cloud-config-server3344" />
+        <module name="cloud-consumer-resilience4j-order80" />
+        <module name="cloud-provider-payment8001" />
         <module name="cloud-eureka-server7002" />
         <module name="cloud-provider-skywalking-payment8001" />
         <module name="cloud-provider-prometheus-payment8001" />
