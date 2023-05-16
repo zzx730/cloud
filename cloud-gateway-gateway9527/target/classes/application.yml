@@ -1,0 +1,96 @@
+server:
+  port: 9527
+
+eureka:
+  instance:
+    # 注册名
+    instance-id: cloud-gateway-gateway9527
+  client:
+    service-url:
+      # Eureka server的地址
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+
+org:
+  my:
+    jwt:
+      # 跳过认证路由
+      skipAuthUrls:
+        - /user/login
+        - /order/index
+
+spring:
+  application:
+    #设置应用名
+    name: cloud-gateway
+  cloud:
+    gateway:
+      # 路由配置
+      routes:
+        # 路由ID，没有固定规则但要求唯一，建议配合服务名
+        - id: cloud-order-consumer
+          # 匹配后提供服务的路由地址 (即目标服务地址) lb后跟提供服务的微服务的名字
+          uri: lb://CLOUD-ORDER-CONSUMER
+          # 断言会接收一个输入参数，返回一个布尔值结果
+          predicates:
+            # 路径相匹配的进行路由
+            - Path=/order/*
+        # 路由ID，没有固定规则但要求唯一，建议配合服务名
+        - id: cloud-auth-user
+          # 匹配后提供服务的路由地址 (即目标服务地址) lb后跟提供服务的微服务的名字
+          uri: lb://CLOUD-AUTH-USER
+          # 断言会接收一个输入参数，返回一个布尔值结果
+          predicates:
+            # 路径相匹配的进行路由
+            - Path=/user/*
+        # 路由ID，没有固定规则但要求唯一，建议配合服务名
+        - id: cloud-payment-provider
+          # 匹配后提供服务的路由地址 (即目标服务地址) lb后跟提供服务的微服务的名字
+          uri: lb://CLOUD-PAYMENT-PROVIDER
+          # 断言会接收一个输入参数，返回一个布尔值结果
+          predicates:
+            # 路径相匹配的进行路由
+            - Path=/payment/*
+            # 在这个时间点之后才能访问
+#            - After=2030-04-28T11:50:49.213572400+08:00[Asia/Shanghai]
+            # 在这个时间点之前才能访问
+#            - Before=2030-04-28T11:50:49.213572400+08:00[Asia/Shanghai]
+            # 在两个时间内才能访问
+#            - Between=2030-04-28T11:50:49.213572400+08:00[Asia/Shanghai],2030-04-28T11:50:49.213572400+08:00[Asia/Shanghai]
+#            - Cookie=username,zzx
+#            - Header=X-Request-Id,\d+
+#            - Host=127.0.0.1,localhost
+#            - Method=GET,POST
+#            - Query=age,\d+
+          #过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
+          filters:
+            # 修改原始响应的状态码
+#            - SetStatus=250
+            # 控制日志是否开启
+            - Log=true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+        add-to-simple-url-handler-mapping: true
+  rabbitmq:
+    host: 192.168.126.11
+    port: 5672
+    username: guest
+    password: guest
+## 设置zipkin和tracing配置 ，方便查看日志信息
+logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://192.168.126.11:9411/api/v2/spans
+  tracing:
+    sampling:
+      # 采样率的概率，100%采样
+      probability: 1.0

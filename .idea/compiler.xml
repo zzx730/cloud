@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-auth-user6500" />
+        <module name="cloud-provider-payment8002" />
+        <module name="cloud-config-client3355" />
+        <module name="cloud-config-client3366" />
+        <module name="cloud-eureka-server7001" />
+        <module name="cloud-stream-rabbitmq-provider8001" />
+        <module name="cloud-provider-payment8001" />
+        <module name="cloud-consumer-resilience4j-order80" />
+        <module name="cloud-config-server3344" />
+        <module name="cloud-eureka-server7002" />
+        <module name="cloud-provider-skywalking-payment8001" />
+        <module name="cloud-provider-prometheus-payment8001" />
+        <module name="cloud-alarm9090" />
+        <module name="cloud-consumer-openfeign-skywalking-order80" />
+        <module name="cloud-gateway-gateway9527" />
+        <module name="cloud-stream-rabbitmq-consumer8002" />
+        <module name="cloud-consumer-openfeign-order80" />
+        <module name="cloud-stream-rabbitmq-consumer8003" />
+        <module name="cloud-consumer-order80" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

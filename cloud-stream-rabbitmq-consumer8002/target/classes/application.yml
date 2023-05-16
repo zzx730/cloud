@@ -1,0 +1,40 @@
+server:
+  port: 8002
+eureka:
+  instance:
+    # 注册的实例名
+    instance-id: cloud-stream-consumer8002
+  client:
+    service-url:
+      # Eureka server的地址
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+spring:
+  application:
+    #设置应用名
+    name: cloud-stream-consumer
+  rabbitmq:
+    host: 192.168.126.11
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        # 广播消息 消费者绑定名称，myBroadcast是自定义的绑定名称，out代表生产者，in代表消费者，0是固定写法
+        myBroadcast-in-0:
+          # 对应的真实的 RabbitMQ Exchange
+          destination: my-broadcast-topic
+        # 分组消息
+        myGroup-in-0:
+          # 对应的真实的 RabbitMQ Exchange
+          destination: my-group-topic
+          # 同一分组的消费服务，只能有一个消费者消费到消息
+          group: my-group-0
+    function:
+      # 定义出消费者
+      definition: myBroadcast;myGroup
+
+

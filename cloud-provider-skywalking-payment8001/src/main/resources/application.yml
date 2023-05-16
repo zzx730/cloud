@@ -1,0 +1,51 @@
+server:
+  port: 8001
+eureka:
+  instance:
+    # 注册名
+    instance-id: cloud-provider-payment8001
+  client:
+    service-url:
+      # Eureka server的地址
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+spring:
+  application:
+    #设置应用名
+    name: cloud-provider-payment
+  rabbitmq:
+    host: 192.168.126.11
+    port: 5672
+    username: guest
+    password: guest
+  # 数据库配置
+  datasource:
+    name: sonice1024
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&useUnicode=true&characterEncoding=utf8&useSSL=false&useTimezone=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 3
+      auto-commit: true
+      idle-timeout: 10000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+## 设置zipkin和tracing配置
+logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+management:
+  zipkin:
+    tracing:
+      endpoint: http://192.168.126.11:9411/api/v2/spans
+  tracing:
+    sampling:
+      # 采样率的概率，100%采样
+      probability: 1.0
+      # 每秒采样 数字最⾼为100
+      #rate: 100
+
+

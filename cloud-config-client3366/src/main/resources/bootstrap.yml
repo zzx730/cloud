@@ -1,0 +1,40 @@
+server:
+  port: 3366
+
+eureka:
+  instance:
+    # 注册的实例名
+    instance-id: cloud-config-client3366
+  client:
+    service-url:
+      # Eureka server的地址
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+spring:
+  application:
+    #设置应用名
+    name: cloud-config-client
+  cloud:
+    config:
+      # 分支名字
+      label: master
+      # 应用名字
+      name: config
+      # 环境名
+      profile: dev
+      # config server 地址
+      uri: http://localhost:3344
+  rabbitmq:
+    host: 192.168.126.11
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

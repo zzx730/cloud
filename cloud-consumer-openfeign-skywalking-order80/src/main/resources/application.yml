@@ -1,0 +1,52 @@
+server:
+  port: 80
+eureka:
+  instance:
+    # 注册的实例名
+    instance-id: cloud-consumer-openfeign-order80
+  client:
+    service-url:
+      # Eureka server的地址
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+spring:
+  application:
+    #设置应用名
+    name: cloud-order-consumer
+  cloud:
+    #默认超时时间
+    openfeign:
+      client:
+        config:
+          default:
+            #连接超时时间
+            connectTimeout: 2000
+            #读取超时时间
+            readTimeout: 2000
+  rabbitmq:
+    host: 192.168.126.11
+    port: 5672
+    username: guest
+    password: guest
+  main:
+    #允许存在多个Feign调用相同Service的接口
+    allow-bean-definition-overriding: true
+
+
+## 设置zipkin和tracing配置 ，方便查看日志信息
+logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#logging:
+#  level:
+#    com.zzx.service: debug
+management:
+  zipkin:
+    tracing:
+      endpoint: http://192.168.126.11:9411/api/v2/spans
+  tracing:
+    sampling:
+      # 采样率的概率，100%采样
+      probability: 1.0
+      # 每秒采样 数字最⾼为100
+      #rate: 100

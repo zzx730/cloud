@@ -1,0 +1,32 @@
+server:
+  port: 80
+eureka:
+  instance:
+    # 注册的实例名
+    instance-id: cloud-consumer-openfeign-order80
+  client:
+    service-url:
+      # Eureka server的地址
+      #单机
+      #defaultZone: http://localhost:7001/eureka/
+      #集群
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+spring:
+  application:
+    #设置应用名
+    name: cloud-order-consumer
+  cloud:
+    #默认超时时间
+    openfeign:
+      client:
+        config:
+          default:
+            #连接超时时间
+            connectTimeout: 2000
+            #读取超时时间
+            readTimeout: 2000
+
+
+logging:
+  level:
+    com.zzx.service: debug

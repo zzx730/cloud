@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zzx</groupId>
+    <artifactId>cloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>cloud-eureka-server7001</module>
+        <module>cloud-provider-payment8001</module>
+        <module>cloud-consumer-order80</module>
+        <module>cloud-eureka-server7002</module>
+        <module>cloud-consumer-openfeign-order80</module>
+        <module>cloud-consumer-resilience4j-order80</module>
+        <module>cloud-alarm9090</module>
+        <module>cloud-auth-user6500</module>
+        <module>cloud-config-client3355</module>
+        <module>cloud-config-client3366</module>
+        <module>cloud-config-server3344</module>
+        <module>cloud-consumer-openfeign-skywalking-order80</module>
+        <module>cloud-gateway-gateway9527</module>
+        <module>cloud-provider-payment8002</module>
+        <module>cloud-provider-prometheus-payment8001</module>
+        <module>cloud-provider-skywalking-payment8001</module>
+        <module>cloud-stream-rabbitmq-consumer8002</module>
+        <module>cloud-stream-rabbitmq-consumer8003</module>
+        <module>cloud-stream-rabbitmq-provider8001</module>
+    </modules>
+
+    <!-- 统一管理jar包版本 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <spring-cloud.version>2022.0.2</spring-cloud.version>
+        <spring-boot.version>3.0.5</spring-boot.version>
+        <micrometer.version>1.0.4</micrometer.version>
+    </properties>
+
+    <!-- 子模块继承之后，提供作用：锁定版本+子module不用写groupId和version  -->
+    <dependencyManagement>
+        <dependencies>
+            <!--spring boot 3.0.5-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-tracing-bom</artifactId>
+                <version>${micrometer.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud 2022.0.0-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

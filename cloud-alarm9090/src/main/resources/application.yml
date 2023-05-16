@@ -1,0 +1,31 @@
+server:
+  port: 9090
+dingding:
+  # 钉钉网络钩子的地址
+  webhook: https://oapi.dingtalk.com/robot/send?access_token=97623edb6f14666fc9a88e6c508c4602d06f75bc4a439c43ea3019eba3d376b3
+  # 秘钥
+  secret: SEC92caa12da4997cb93427b8c4e8383825335a32434cd9949c48b8263843c26193
+
+spring:
+  mail:
+    # 配置 SMTP 服务器地址
+    host: smtp.qq.com
+    # 发送者邮箱
+    username: 1325684729@qq.com
+    # 配置密码，刚刚申请到的授权码
+    password: gfhxpfnivobmigbj
+    # 126邮箱SMTP服务器地址:smtp.126.com,端口号:465或者994
+    # 163邮箱SMTP服务器地址:smtp.163.com,端口号:465或者994
+    # yeah邮箱SMTP服务器地址:smtp.yeah.net,端口号:465或者994
+    # qq邮箱SMTP服务器地址：smtp.qq.com,端口号465或587
+    # 默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          #需要验证用户名密码
+          auth: true
+        starttls:
+          # 设置为配置SMTP连接的属性。要使用STARTTLS，必须设置以下属性
+          enable: true
+          required: true
